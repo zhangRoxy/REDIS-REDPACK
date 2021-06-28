@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zrs.redpacket.mapper.RedPacketMapper">
+    <insert id="addRedPacket">
+        insert into redpacket.t_red_packet_info (red_packet_id, total_amount, total_packet,
+                                                 remaining_amount, remaining_packet, uid,
+                                                 create_time, update_time)
+            value (#{red_packet_id}, #{total_amount},
+                   #{total_packet},
+                   #{remaining_amount},
+                   #{remaining_packet}, #{uid},
+                   #{create_time}, #{update_time})
+    </insert>
+
+    <insert id="addRedPacketRecord">
+    insert into redpacket.t_red_packet_record (amount,nick_name,img_url,uid,red_packet_id,create_time,update_time)
+    value
+    (#{amount},#{nick_name},#{img_url},#{uid},#{red_packet_id},#{create_time},#{update_time})
+    </insert>
+    <update id="updatePacketInfo">
+    update redpacket.t_red_packet_info set
+                       remaining_amount=#{remaining_amount},
+                       remaining_packet=#{remaining_packet},
+                       update_time=#{update_time}
+                       where red_packet_id=#{red_packet_id}
+    </update>
+</mapper>
